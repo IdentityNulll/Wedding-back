@@ -5,7 +5,7 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 const QRCode = require("qrcode");
 const Wedding = require("./models/Wedding");
-const upload = require("./middleware/upload"); 
+const upload = require("./middleware/upload");
 
 dotenv.config();
 
@@ -13,17 +13,18 @@ const app = express();
 
 const corsOptions = {
   origin: [
-    "https://wedding-front.netlify.app", 
-    "http://localhost:5500", 
-    "http://127.0.0.1:5500", 
+    "https://wedding-front.netlify.app/admin",
+    "https://wedding-front.netlify.app/",
+    "http://localhost:5500",
+    "http://127.0.0.1:5500",
   ],
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
 };
 
 app.use(cors(corsOptions));
-app.use(express.json()); 
-app.use("/uploads", express.static("uploads")); 
+app.use(express.json());
+app.use("/uploads", express.static("uploads"));
 
 app.get("/weddings", async (req, res) => {
   try {
